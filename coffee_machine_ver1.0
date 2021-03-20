@@ -1,0 +1,40 @@
+cups = []
+
+ingredients = {
+        "ml of water": 0,
+        "ml of milk": 0,
+        "grams of coffee beans": 0
+        }
+
+
+recepie = {
+        "ml of water": 200,
+        "ml of milk": 50,
+        "grams of coffee beans": 15
+        }
+
+def ingredients_input():
+    for ingredient in ingredients:
+        print(f'Write how {ingredient} of water the coffee machine has:')
+        ingredients[ingredient] = int(input())
+
+
+def how_many_cups():
+    for ingredient in ingredients:
+        cups.append(ingredients[ingredient] // recepie[ingredient])
+    return min(cups)
+        
+    
+ingredients_input()
+cups_can_prepare = how_many_cups()
+
+
+print('Write how many cups of coffee you will need:')
+cups_needed = int(input())
+
+if cups_needed <= cups_can_prepare:
+    print('Yes, I can make that amount of coffee', end='')
+    if cups_can_prepare - cups_needed > 0:
+        print(f' (and even {cups_can_prepare - cups_needed} more than that)')
+elif cups_needed > how_many_cups():
+    print(f'No, I can make only {cups_can_prepare} cups of coffee')
